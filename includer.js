@@ -6,18 +6,23 @@ import Home from './src/screens/Home';
 import AddProduct from './src/screens/AddProduct';
 import Sell from './src/screens/Sell';
 
+const state = {
+    color:"black",
+    text:"white"
+}
+
 const Drawer = createDrawerNavigator({
     Splash:{
         screen:SplashScreen
     },
     Home:{
-        screen:Home
+        screen: props => <Home state={state} />,
     },
     Products:{
-        screen:AddProduct
+        screen: props => <AddProduct state={state} />
     },
     Sell:{
-        screen:Sell
+        screen:props => <Sell state={state} />
     }
 },
 {
@@ -32,7 +37,7 @@ export default class includer extends Component {
     }
   render() {
     return (
-            <AppContainer />
+            <AppContainer state = {this.state} />
     )
   }
 }
