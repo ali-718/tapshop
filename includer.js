@@ -4,6 +4,7 @@ import {createDrawerNavigator,createAppContainer} from 'react-navigation'
 import SplashScreen from './src/screens/splashScreen';
 import Home from './src/screens/Home';
 import AddProduct from './src/screens/AddProduct';
+import Sell from './src/screens/Sell';
 
 const Drawer = createDrawerNavigator({
     Splash:{
@@ -14,10 +15,24 @@ const Drawer = createDrawerNavigator({
     },
     Products:{
         screen:AddProduct
+    },
+    Sell:{
+        screen:Sell
     }
 },
 {
-    initialRouteName:"Products"
+    initialRouteName:"Home"
 })
 
-export default AppContainer = createAppContainer(Drawer)
+const AppContainer = createAppContainer(Drawer)
+
+export default class includer extends Component {
+    state = {
+        color:"black"
+    }
+  render() {
+    return (
+            <AppContainer />
+    )
+  }
+}

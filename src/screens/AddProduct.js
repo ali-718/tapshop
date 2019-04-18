@@ -10,6 +10,10 @@ export default class AddProduct extends Component {
         clicked:""
     }
 
+    static navigationOptions =  {
+        tabBarLabel : () => null,
+    }
+
     Imager = () => {
         ImagePicker.openPicker({
             multiple: true
