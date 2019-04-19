@@ -6,10 +6,16 @@ import { Chip,HelperText } from 'react-native-paper';
 
 export default class AddProduct extends Component {
 
-    state = {
-        clicked:""
-    }
-
+    constructor(props){
+        super(props);
+        this.state = {
+          color:props.state.color,
+          text:props.state.text,
+          background:props.state.background,
+          clicked:"",
+          status:props.state.statusBarColour
+        }
+      }
     static navigationOptions =  {
         tabBarLabel : () => null,
     }
@@ -60,15 +66,15 @@ export default class AddProduct extends Component {
 
     return (
         <ScrollView style={{flex:1}}>
-            <View style={{flex:1}}>
-                <Header hasTabs style={{backgroundColor: "white",height:40,borderBottomWidth:1,borderBottomColor:"green",elevation:0}}  androidStatusBarColor="black">
+            <View style={{flex:1,width:"100%",backgroundColor:this.state.background}}>
+                <Header hasTabs style={{backgroundColor: this.state.background,height:40,borderBottomWidth:1,borderBottomColor:"green",elevation:0}}  androidStatusBarColor={this.state.status}>
                     <Left>
-                        <Button transparent onPress={() => this.props.navigation.toggleDrawer()}>
-                        <Icon name='menu' style={{color:"black"}}/>
+                        <Button transparent onPress={() => this.props.navigation.navigation.navigate("Home")}>
+                        <Icon name='arrow-back' style={{color:this.state.text}}/>
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={{color:"black"}}>TapShop</Title>
+                        <Title style={{color:this.state.text}}>TapShop</Title>
                     </Body>
                 </Header>
                 <View style={{alignItems: 'center', width:"100%"}}>
@@ -83,7 +89,7 @@ export default class AddProduct extends Component {
                     </View>
                     <View style={{width:"60%",justifyContent: 'flex-end'}}>
                     <Item floatingLabel>
-                        <Label>Title</Label>
+                        <Label style={{color:this.state.text}}>Title</Label>
                         <Input />
                     </Item>
                     </View>
@@ -94,13 +100,13 @@ export default class AddProduct extends Component {
                     </View>
                     <View style={{width:"60%",justifyContent: 'flex-end'}}>
                     <Item floatingLabel>
-                        <Label>Location</Label>
+                        <Label style={{color:this.state.text}}>Location</Label>
                         <Input />
                     </Item>
                     </View>
                 </View>
                 <View style={{width:"100%",justifyContent: 'center', alignItems: 'center', marginTop:40}}>
-                    <Text style={{marginBottom:10,color:"black"}}>Condition</Text>
+                    <Text style={{marginBottom:10,color:this.state.text}}>Condition</Text>
                     {<Chips />}
                 </View>
                 <View style={{width:"80%", justifyContent: 'center', flexDirection:"row",marginTop:20}}>
@@ -109,14 +115,14 @@ export default class AddProduct extends Component {
                     </View>
                     <View style={{width:"60%",justifyContent: 'flex-end'}}>
                     <Item floatingLabel>
-                        <Label>Selling Price</Label>
+                        <Label style={{color:this.state.text}}>Selling Price</Label>
                         <Input />
                     </Item>
                     </View>
                 </View>
                 <View style={{width:"100%", alignItems: 'center', marginTop:40}}>
                     <View style={{width:"80%",alignItems: 'center',}}>
-                        <Text style={{fontSize:18,color:"black"}}>Details</Text>
+                        <Text style={{fontSize:18,color:this.state.text}}>Details</Text>
                         <Text style={{fontSize:10}}>
                             Anything you want buyers to know.
                         </Text>

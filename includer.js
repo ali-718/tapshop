@@ -5,39 +5,56 @@ import SplashScreen from './src/screens/splashScreen';
 import Home from './src/screens/Home';
 import AddProduct from './src/screens/AddProduct';
 import Sell from './src/screens/Sell';
+import Display from './src/screens/Display';
+import Shop from './src/screens/Shop';
 
-const state = {
-    color:"black",
-    text:"white"
-}
+export default class Includer extends Component {
 
-const Drawer = createDrawerNavigator({
-    Splash:{
-        screen:SplashScreen
-    },
-    Home:{
-        screen: props => <Home state={state} />,
-    },
-    Products:{
-        screen: props => <AddProduct state={state} />
-    },
-    Sell:{
-        screen:props => <Sell state={state} />
+    static navigationOptions = {
+        drawerLabel:() => null
     }
-},
-{
-    initialRouteName:"Home"
-})
 
-const AppContainer = createAppContainer(Drawer)
-
-export default class includer extends Component {
+    
     state = {
-        color:"black"
+        color:this.props.navigation.getParam('color','white'),
+        text:this.props.navigation.getParam('text','black'),
+        background:this.props.navigation.getParam('back','white'),
+        statusBarColour:this.props.navigation.getParam('status','green')
     }
+
   render() {
+    
+        const Drawer = createDrawerNavigator({
+            Splash:{
+                screen:SplashScreen
+            },
+            Home:{
+                screen: props => <Home state={this.state} navigation={props} />,
+            },
+            Products:{
+                screen: props => <AddProduct state={this.state} navigation={props} />
+            },
+            Sell:{
+                screen:props => <Sell state={this.state} navigation={props} />
+            },
+            Display:{
+                screen:props => <Display state={this.state} navigation={props} />
+            },
+            Shop:{
+                screen:props => <Shop state={this.state} navigation={props} />
+            },
+            Includer:{
+                screen:Includer
+            }
+        },
+        {
+            initialRouteName:"Home"
+        })
+
+        const AppContainer = createAppContainer(Drawer)
+
     return (
-            <AppContainer state = {this.state} />
+            <AppContainer />
     )
   }
 }
