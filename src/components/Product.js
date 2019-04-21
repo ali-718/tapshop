@@ -3,6 +3,7 @@ import { TouchableOpacity,View,Image,Text } from 'react-native';
 import {Icon} from 'native-base'
 
 const Product = (props) => {
+ 
   return (
     <TouchableOpacity onPress={props.navigation} style={{marginLeft:10,marginTop:10,alignItems: 'center',}}>
         <Image source={props.Image} style={{width:160, height:150}} />

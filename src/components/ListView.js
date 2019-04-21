@@ -3,7 +3,7 @@ import {Platform,TextInput, StyleSheet, Text, View,Image, TouchableOpacity,BackH
 
 const ListView = (props) => {
   return (
-    <TouchableOpacity onPress={() => this.props.navigation.navigate('Item',{Picture:White,Lang:this.state.Lang})} style={{flexDirection:"row",width:"90%",backgroundColor:props.back}}>
+    <TouchableOpacity onPress={() => props.navigation({Name:props.Name,Price:props.Price,Image:props.Image})} style={{flexDirection:"row",width:"90%",backgroundColor:props.back}}>
         <View style={{marginTop:10,width:80,}}>
             <Image style={{width:80,height:130,borderRadius:10,}} source={props.Image} />
         </View>

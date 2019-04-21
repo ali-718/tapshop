@@ -31,13 +31,7 @@ const NoValue = () =>  (<View style={{marginTop:20}}><Text style={{color:this.st
             <Text style={{color:"white", fontSize:15,marginLeft:5}}>Sell New Item</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={this.props.Includer} activeOpacity={0.8} style={{width:"80%",height:50, backgroundColor: "green", marginTop:20, borderRadius:10}}>
-          <View style={{width:"100%",alignItems: 'center', justifyContent: 'center', height:50, flexDirection:"row"}}>
-            <Icon name="add" style={{fontSize: 20, color:"white"}} />
-            <Text style={{color:"white", fontSize:15,marginLeft:5}}>Sell New Item</Text>
-          </View>
-        </TouchableOpacity>
-
+  
         {this.state.Items.length < 1 ? <NoValue/> : <View style={{marginTop:20}}><Text style={{color:this.state.text}}>Ali</Text></View> }
       </View>
     )

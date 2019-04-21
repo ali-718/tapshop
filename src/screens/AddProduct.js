@@ -17,7 +17,7 @@ export default class AddProduct extends Component {
         }
       }
     static navigationOptions =  {
-        tabBarLabel : () => null,
+        drawerLabel : "Sell an Item",
     }
 
     Imager = () => {
@@ -69,8 +69,8 @@ export default class AddProduct extends Component {
             <View style={{flex:1,width:"100%",backgroundColor:this.state.background}}>
                 <Header hasTabs style={{backgroundColor: this.state.background,height:40,borderBottomWidth:1,borderBottomColor:"green",elevation:0}}  androidStatusBarColor={this.state.status}>
                     <Left>
-                        <Button transparent onPress={() => this.props.navigation.navigation.navigate("Home")}>
-                        <Icon name='arrow-back' style={{color:this.state.text}}/>
+                        <Button transparent onPress={() => this.props.navigation.navigation.toggleDrawer()}>
+                        <Icon name='menu' style={{color:this.state.text}}/>
                         </Button>
                     </Left>
                     <Body>
@@ -116,7 +116,7 @@ export default class AddProduct extends Component {
                     <View style={{width:"60%",justifyContent: 'flex-end'}}>
                     <Item floatingLabel>
                         <Label style={{color:this.state.text}}>Selling Price</Label>
-                        <Input />
+                        <Input keyboardType="numeric" />
                     </Item>
                     </View>
                 </View>
