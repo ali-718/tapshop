@@ -18,6 +18,7 @@ import Contact from './src/screens/contact';
 import Accessories from './src/screens/Accessories';
 import Laptops from './src/screens/laptops';
 import Gadgets from './src/screens/gadgets';
+import RNCreditCard from './src/screens/creditCard';
 
 export default class Includer extends Component {
 
@@ -98,6 +99,12 @@ export default class Includer extends Component {
                 screen:props => <About state={this.state} navigation={props} />,
                 navigationOptions:{
                     drawerLabel:() => null
+                }
+            },
+            CreditCard:{
+                screen:(props) => <RNCreditCard state={this.state} {...props} />,
+                navigationOptions:{
+                    drawerLabel:"credit"
                 }
             },
             Contact:{
