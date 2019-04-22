@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, TouchableOpacity,Switch,Image,StyleSheet,BackHandler } from 'react-native';
-import { Container, Header, Content, Footer, FooterTab, Button, Icon,Drawer,Left,Title,Body } from 'native-base';
+import { Container, Header, Content, Footer, FooterTab, Button, Icon,Drawer,Left,Title,Body,Right } from 'native-base';
 import Person from '../assets/images/Account_Person.png';
 import Modal from "react-native-modal";
 
@@ -13,6 +13,7 @@ export default class Account extends Component {
       super(props);
       this.state = {
         color:props.state.color,
+        grey:props.state.grey,
         text:props.state.text,
         back:props.state.backgroundColor,
         status:props.state.statusBarColour,
@@ -20,7 +21,7 @@ export default class Account extends Component {
         switch1:props.state.color == 'grey' ? true : false,
         switchLang:false,
         Wishlist:0,
-        Lang:"en",
+        Lang:props.state.Lang,
         isModalVisible:false,
       }
       this._didFocusSubscription = props.navigation.navigation.addListener('didFocus', payload =>
@@ -46,6 +47,7 @@ export default class Account extends Component {
   
 
   render() {
+
     const Account_English = (<ScrollView>
       <View style={{width:"100%",alignItems:"center",backgroundColor: this.state.color,}}>
         <View style={{flexDirection:"row",width:'90%',height:130,alignItems:"center",backgroundColor: this.state.color,}}>
@@ -90,7 +92,7 @@ export default class Account extends Component {
             <Text style={{fontSize:17,color:this.state.text}}>Dark Theme</Text>
           </View>
           <View style={{flexGrow:1,alignItems:"flex-end",justifyContent: 'center',}}>
-          <Switch value={this.state.switch1} onValueChange={ this.state.color == "grey" ? () => this.props.navigation.navigation.navigate("Includer") : () => this.props.navigation.navigation.navigate("Includer",{text:"white",color:"grey",back:"grey",status:"grey",grey:"white"})}/>
+          <Switch value={this.state.switch1} onValueChange={ this.state.color == "grey" ? () => this.props.navigation.navigation.navigate("Includer",{Lang:this.state.Lang}) : () => this.props.navigation.navigation.navigate("Includer",{text:"white",color:"grey",back:"grey",status:"grey",grey:"white",Lang:this.state.Lang})}/>
           </View>
         </View>
       </TouchableOpacity>
@@ -117,24 +119,108 @@ export default class Account extends Component {
   </ScrollView>
   )
 
+  const Account_Arabic = ( <ScrollView>
+    <View style={{width:"100%",alignItems:"center",backgroundColor: this.state.color,}}>
+    <View style={{flexDirection:"row",width:'90%',height:130,alignItems:"center",backgroundColor: this.state.color,}}>
+      <View style={{marginRight:10,width:"60%",height:100,justifyContent: 'center',}}>
+        <Text style={{color:this.state.text,fontSize:30,fontWeight:"bold"}}>
+        زائر
+        </Text>
+        <TouchableOpacity style={{marginTop:20}} onPress={() => this.props.navigation.navigate('Login',{Lang:this.state.Lang})}>
+            <Text style={{fontSize:12,color:this.state.text}}>
+            تسجيل الدخول
+            </Text>
+        </TouchableOpacity> 
+      </View>
+      <View style={{marginLeft:10,width:80,}}>
+        <Image style={{width:80,height:80,}} source={Person} />
+      </View>
+  </View>
+</View>
+<TouchableOpacity style={{width:"100%",alignItems:"center",marginTop:10, height:60,borderBottomWidth: 0.7,borderColor: "silver",backgroundColor: this.state.color,}}>
+  <View style={{width:"90%",height:60,justifyContent: 'center',flexDirection: 'row'}}>
+    <View style={{flexGrow:1,alignItems:"flex-start",justifyContent: 'center',}}>
+      <Icon name="keyboard-arrow-left" type="MaterialIcons" style={{fontSize: 20,color:this.state.text}} />
+    </View>
+    <View style={{flexGrow:1,alignItems:"flex-end",justifyContent: 'center'}}>
+      <Text style={{fontSize:17,color:this.state.text}}>الأماني ({this.state.Wishlist})</Text>
+    </View>
+  </View>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => this.setState({isModalVisible:!this.state.isModalVisible})} style={{width:"100%",alignItems:"center", height:60,borderBottomWidth: 0.7,borderColor: "silver",backgroundColor: this.state.color,}}>
+<View style={{width:"90%",height:60,justifyContent: 'center',flexDirection: 'row'}}>
+  <View style={{flexGrow:1,alignItems:"flex-start",justifyContent: 'center',}}>
+  <Icon name="keyboard-arrow-left" type="MaterialIcons" style={{fontSize: 20,color:this.state.text}} />
+  </View>
+  <View style={{flexGrow:1,alignItems:"flex-end",justifyContent: 'center'}}>
+    <Text style={{fontSize:17,color:this.state.text}}>لغة</Text>
+  </View>
+</View>
+</TouchableOpacity>
+<TouchableOpacity style={{width:"100%",alignItems:"center", height:60,borderBottomWidth: 0.7,borderColor: "silver",backgroundColor: this.state.color,}}>
+  <View style={{width:"90%",height:60,justifyContent: 'center',flexDirection: 'row'}}>
+    <View style={{flexGrow:1,alignItems:"flex-start",justifyContent: 'center',}}>
+    <Switch value={this.state.switch1} onValueChange={ this.state.color == "grey" ? () => this.props.navigation.navigation.navigate("Includer",{Lang:this.state.Lang}) : () => this.props.navigation.navigation.navigate("Includer",{text:"white",color:"grey",back:"grey",status:"grey",grey:"white",Lang:this.state.Lang})}/>
+    </View>
+    <View style={{flexGrow:1,alignItems:"flex-end",justifyContent: 'center'}}>
+      <Text style={{fontSize:17,color:this.state.text}}>موضوع الظلام</Text>
+    </View>
+  </View>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => this.props.navigation.navigation.navigate('Contact')} style={{width:"100%",alignItems:"center", height:60,borderBottomWidth: 0.7,backgroundColor: this.state.color,}}>
+  <View style={{width:"90%",height:60,justifyContent: 'center',flexDirection: 'row'}}>
+    <View style={{flexGrow:1,alignItems:"flex-start",justifyContent: 'center',}}>
+      <Icon name="keyboard-arrow-left" type="MaterialIcons" style={{fontSize: 20,color:this.state.text}} />
+    </View>
+    <View style={{flexGrow:1,alignItems:"flex-end",justifyContent: 'center'}}>
+      <Text style={{fontSize:17,color:this.state.text}}>اتصل بنا</Text>
+    </View>
+  </View>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => this.props.navigation.navigation.navigate('About')} style={{width:"100%",alignItems:"center", height:60,borderBottomWidth: 0.7,borderColor: "silver",backgroundColor: this.state.color,}}>
+  <View style={{width:"90%",height:60,justifyContent: 'center',flexDirection: 'row'}}>
+    <View style={{flexGrow:1,alignItems:"flex-start",justifyContent: 'center',}}>
+      <Icon name="keyboard-arrow-left" type="MaterialIcons" style={{fontSize: 20,color:this.state.text}} />
+    </View>
+    <View style={{flexGrow:1,alignItems:"flex-end",justifyContent: 'center'}}>
+      <Text style={{fontSize:17,color:this.state.text}}>معلومات عنا</Text>
+    </View>
+  </View>
+</TouchableOpacity>
+</ScrollView>
+)
+
     return (
         <View style={{flex:1,width:"100%",backgroundColor: this.state.color,}}>
         {/* Header */}
-        <Header hasTabs style={{backgroundColor:this.state.color,height:40,borderBottomWidth:1,borderBottomColor:"green",elevation:0}}  androidStatusBarColor={this.state.status}>
+        {this.state.Lang == "en" ? <Header hasTabs style={{backgroundColor:this.state.color,height:40,borderBottomWidth:1,borderBottomColor:"green",elevation:0}}  androidStatusBarColor={this.state.status}>
               <Left>
                 <Button transparent onPress={() => this.props.navigation.navigation.toggleDrawer()}>
                   <Icon name='menu' style={{color:this.state.text}}/>
                 </Button>
               </Left>
+              <Left />
               <Body>
                 <Title style={{color:this.state.text}}>TapShop</Title>
               </Body>
-          </Header>
+          </Header> : <Header hasTabs style={{backgroundColor:this.state.color,height:40,borderBottomWidth:1,borderBottomColor:"green",elevation:0}}  androidStatusBarColor={this.state.status}>
+              <Left />
+              <Left />
+              <Left />
+              <Body style={{alignItems: 'center',}}>
+                <Title style={{color:this.state.text}}>TapShop</Title>
+              </Body>
+              <Right>
+              <Button transparent onPress={() => this.props.navigation.navigation.toggleDrawer()}>
+                  <Icon name='menu' style={{color:this.state.text}}/>
+              </Button>
+              </Right>
+          </Header> }
         {/* Header ends here */}
           {/* Body starts */}
         
           {/* Body ends here */}
-              {Account_English}
+              {this.state.Lang == "en" ? Account_English : Account_Arabic}
     
 
         {/* Modal starts */}
@@ -145,13 +231,13 @@ export default class Account extends Component {
                     <Icon name="times" type="FontAwesome" style={{marginRight: 20,}}/>
                     </TouchableOpacity>
                 </View>
-                <View style={{justifyContent:"center",marginTop:10,flexDirection:"row",width:"100%",alignItems: 'center',height:80,backgroundColor: "green"}}>
-                    <TouchableOpacity onPress={() => this.setState({isModalVisible:!this.state.isModalVisible})} style={{width:"40%",alignItems: 'center',height:70,borderRadius:10,justifyContent: 'center',}}>
-                        <Text style={{color:"white"}}>English</Text>
+                <View style={{justifyContent:"center",marginTop:10,flexDirection:"row",width:"100%",alignItems: 'center',height:80,backgroundColor:this.state.Lang == "en" ? "green" : ""}}>
+                    <TouchableOpacity onPress={() => (this.setState({isModalVisible:!this.state.isModalVisible}),this.props.navigation.navigation.navigate("Includer",{Lang:"en",text:this.state.text,color:this.state.color,back:this.state.color,status:this.state.status,grey:this.state.grey}))} style={{width:"40%",alignItems: 'center',height:70,borderRadius:10,justifyContent: 'center',}}>
+                        <Text style={{color:this.state.text}}>English</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={{justifyContent:"center",marginTop:10,flexDirection:"row",width:"100%",alignItems: 'center',height:80}}>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Index',{Lang:"ar"})} style={{width:"40%",alignItems: 'center',height:70,borderRadius:10,justifyContent: 'center'}}>
+                <View style={{justifyContent:"center",marginTop:10,flexDirection:"row",width:"100%",alignItems: 'center',height:80,backgroundColor:this.state.Lang != "en" ? "green" : ""}}>
+                    <TouchableOpacity onPress={() => (this.setState({isModalVisible:!this.state.isModalVisible}),this.props.navigation.navigation.navigate("Includer",{Lang:"ar",text:this.state.text,color:this.state.color,back:this.state.color,status:this.state.status,grey:this.state.grey}))} style={{width:"40%",alignItems: 'center',height:70,borderRadius:10,justifyContent: 'center'}}>
                         <Text style={{color:this.state.text}}>عربى</Text>
                     </TouchableOpacity>
                 </View>

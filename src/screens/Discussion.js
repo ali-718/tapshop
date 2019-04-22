@@ -10,7 +10,8 @@ export default class Offers extends Component {
       color:props.state.color,
       text:props.state.text,
       background:props.state.background,
-      Items:[]
+      Lang:props.state.Lang,
+      Items:[],
     }
   }
 
@@ -20,11 +21,11 @@ static navigationOptions = {
 
   render() {
 
-const NoValue = () =>  (<View style={{marginTop:20}}><Text style={{color:this.state.text}}> Currently there are no offers</Text></View>)
+const NoValue = () =>  (<View style={{marginTop:20}}><Text style={{color:this.state.text}}>{this.state.Lang == "en" ? "Currently there are no offers" : "حاليا لا توجد عروض"}</Text></View>)
 
     return (
       <View style={{alignItems: 'center', flex:1, backgroundColor:this.state.background,width:"100%"}}>
-        {this.state.Items.length < 1 ? <NoValue/> : <View style={{marginTop:20}}><Text style={{color:this.state.text}}>Ali</Text></View> }
+        {this.state.Items.length < 1 ? <NoValue/> : <View style={{marginTop:20}}><Text style={{color:this.state.text}}>{this.state.Lang == "en" ? "Current Offers" : "العروض الحالية"}</Text></View> }
       </View>
     )
   }

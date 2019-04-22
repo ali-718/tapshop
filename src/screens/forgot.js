@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, Image, TextInput,BackHandler, TouchableOpacity, Dimensions,ScrollView } from 'react-native'
 import Hr from "react-native-hr-component";
 import facebook from '../assets/images/facebook.png';
-import { Container, Header, Content, Footer, FooterTab, Button, Icon,Drawer,Left,Body,Title } from 'native-base';
+import { Container, Header, Content, Footer, FooterTab, Button, Icon,Drawer,Left,Body,Title,Right } from 'native-base';
 
 export default class Forgot extends Component {
 
@@ -20,6 +20,7 @@ export default class Forgot extends Component {
       borderColor:"black",
       Email:"",
       Password:"",
+      Lang:props.state.Lang
     }
     this._didFocusSubscription = props.navigation.navigation.addListener('didFocus', payload =>
       BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
@@ -118,16 +119,29 @@ const style = StyleSheet.create({
     return (
         <View style={{flex:1,width:"100%",backgroundColor:this.state.color}}>
         {/* Header */}
-        <Header hasTabs style={{backgroundColor:this.state.color,height:40,borderBottomWidth:1,borderBottomColor:"green",elevation:0}}  androidStatusBarColor={this.state.status}>
-                <Left>
-                    <Button transparent onPress={() => this.props.navigation.navigation.toggleDrawer()}>
-                    <Icon name='menu' style={{color:this.state.text}}/>
-                    </Button>
-                </Left>
-                <Body>
-                    <Title style={{color:this.state.text}}>TapShop</Title>
-                </Body>
-            </Header>
+        {this.state.Lang == "en" ? <Header hasTabs style={{backgroundColor:this.state.color,height:40,borderBottomWidth:1,borderBottomColor:"green",elevation:0}}  androidStatusBarColor={this.state.status}>
+              <Left>
+                <Button transparent onPress={() => this.props.navigation.navigation.toggleDrawer()}>
+                  <Icon name='menu' style={{color:this.state.text}}/>
+                </Button>
+              </Left>
+              <Left />
+              <Body>
+                <Title style={{color:this.state.text}}>TapShop</Title>
+              </Body>
+          </Header> : <Header hasTabs style={{backgroundColor:this.state.color,height:40,borderBottomWidth:1,borderBottomColor:"green",elevation:0}}  androidStatusBarColor={this.state.status}>
+              <Left />
+              <Left />
+              <Left />
+              <Body style={{alignItems: 'center',}}>
+                <Title style={{color:this.state.text}}>TapShop</Title>
+              </Body>
+              <Right>
+              <Button transparent onPress={() => this.props.navigation.navigation.toggleDrawer()}>
+                  <Icon name='menu' style={{color:this.state.text}}/>
+              </Button>
+              </Right>
+          </Header> }
             {/* Header ends here */}
         <ScrollView style={{flex:1,backgroundColor:this.state.back,width:"100%"}}>
         <View style={style.container}>
@@ -135,15 +149,15 @@ const style = StyleSheet.create({
         {/* <Image source={Logo} style={style.insta}></Image> */}
         </View>
         <View style={style.txtView}>
-            <TextInput onChangeText={(val) => {this.setState({Email:val})}} value={this.state.Email} style={style.txtInput} placeholder="Email" placeholderTextColor={this.state.grey}></TextInput>
+            <TextInput onChangeText={(val) => {this.setState({Email:val})}} value={this.state.Email} style={style.txtInput} placeholder={this.state.Lang == "en" ? "Email" : "البريد الإلكتروني"} placeholderTextColor={this.state.grey}></TextInput>
           </View>
         <View style={style.loginBtnView}>
             <TouchableOpacity onPress={this.LoginPress} style={style.loginBtn}>
-            <Text style={{color:"white", fontWeight:"bold"}}>Send</Text>
+            <Text style={{color:"white", fontWeight:"bold"}}>{this.state.Lang == "en" ? "Send" : "إرسال"}</Text>
             </TouchableOpacity>
         </View>
         <View style={style.bottomView}>
-        <TouchableOpacity onPress={() => this.props.navigation.navigation.navigate('Signup')}><Text style={{paddingTop:"3%", fontSize:12,color:"black"}}>Dont have an account <Text style={{fontWeight:"bold", color:"green"}}>Signup</Text></Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigation.navigate('Signup')}><Text style={{paddingTop:"3%", fontSize:12,color:"black"}}>{this.state.Lang == "en" ? "Dont have an account" : "ليس لديك حساب"}<Text style={{fontWeight:"bold", color:"green"}}> {this.state.Lang == "en" ? "Signup" : "سجل"}</Text></Text></TouchableOpacity>
         </View>
         </View>
         </ScrollView>

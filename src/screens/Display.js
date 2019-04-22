@@ -72,25 +72,25 @@ export default class Display extends Component {
         <View style={{flex:1,backgroundColor: this.state.background,width:"100%"}}>
             <View style={{width:"100%",alignItems: 'center',marginTop:10,marginBottom:10}}>
                 <View style={{width:"90%"}}>
-                    <ListView navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name="Bermuda Shorts by Armani" Price="19.99" Image={Shorts} />
+                    <ListView Lang={this.props.state.Lang} navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name={this.props.state.Lang == "en" ? "Bermuda Shorts by Armani" : "شورت برمودا من أرماني"} Price="19.99" Image={Shorts} />
                 </View>
                 <View style={{width:"90%"}}>
-                    <ListView navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name="Men's Blue Shirt by Levis" Price="29.99" Image={Shirt} />
+                    <ListView Lang={this.props.state.Lang}  navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name={this.props.state.Lang == "en" ? "Men's Blue Shirt by Levis" : "قميص رجالي أزرق من ليفيس"} Price="29.99" Image={Shirt} />
                 </View>
                 <View style={{width:"90%"}}>
-                    <ListView navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name="Men's Black Shirt by Armani" Price="34.99" Image={Tshirt} />
+                    <ListView Lang={this.props.state.Lang} navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name={this.props.state.Lang == "en" ? "Men's Black Shirt by Armani" : "قميص أسود للرجال من أرماني"} Price="34.99" Image={Tshirt} />
                 </View>
                 <View style={{width:"90%"}}>
-                    <ListView navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name="Men's Plain Green Shirt" Price="29.99" Image={Green} />
+                    <ListView Lang={this.props.state.Lang} navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name={this.props.state.Lang == "en" ? "Men's Plain Green Shirt" : "الرجال القميص الأخضر عادي"} Price="29.99" Image={Green} />
                 </View>
                 <View style={{width:"90%"}}>
-                    <ListView navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name="Ladies Shirt by Gucci" Price="49.99" Image={Ladies} />
+                    <ListView Lang={this.props.state.Lang} navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name={this.props.state.Lang == "en" ? "Ladies Shirt by Gucci" : "قميص السيدات من غوتشي"} Price="49.99" Image={Ladies} />
                 </View>
                 <View style={{width:"90%"}}>
-                    <ListView navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name="Men's Plain White Shirt" Price="16.99" Image={White} />
+                    <ListView Lang={this.props.state.Lang} navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name={this.props.state.Lang == "en" ? "Men's White Shirt by Levis" : "القميص الابيض للرجال من ليفيس"} Price="16.99" Image={White} />
                 </View>
                 <View style={{width:"90%"}}>
-                    <ListView navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name="Men's White Shirt by Levis" Price="39.99" Image={WhiteSecond} />
+                    <ListView Lang={this.props.state.Lang} navigation={(val) => this.props.navigation.navigation.navigate("Item",val)} back={this.state.color} textColor={this.state.text} Name={this.props.state.Lang == "en" ? "Men's Plain White Shirt" : "قميص أبيض عادي للرجال"} Price="39.99" Image={WhiteSecond} />
                 </View>
             </View>
         </View>

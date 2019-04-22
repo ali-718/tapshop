@@ -9,7 +9,7 @@ const NavigationOptions = (props) => (
     <View style={{alignItems:"center"}}>
    <View style={styles.DrawerView}>
     <Image source={Person} style={{width:90, height:90, borderRadius:50}} />
-    <Text style={{color:props.state.text,fontWeight:"bold", fontSize:20}}>Guest</Text>
+    <Text style={{color:props.state.text,fontWeight:"bold", fontSize:20}}>{props.state.Lang == "en" ? "Guest" : "زائر"}</Text>
     <Text style={{color:props.state.text}}>info@apptron.com</Text>
    </View>
     </View>

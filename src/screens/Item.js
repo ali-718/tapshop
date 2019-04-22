@@ -22,6 +22,7 @@ export default class Item extends Component {
           status:props.state.statusBarColour,
           isModalVisible:false,
           HeartColor:props.state.text,
+          Lang:props.state.Lang,
         }
         this._didFocusSubscription = props.navigation.navigation.addListener('didFocus', payload =>
         BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
@@ -64,6 +65,8 @@ export default class Item extends Component {
       const Image = this.props.navigation.navigation.getParam("Image");
       const Name = this.props.navigation.navigation.getParam("Name");
       const Price = this.props.navigation.navigation.getParam("Price");
+      const Lorem = " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+      const Lorem_Arabic = "أبجد هوز هو مجرد دمية النص لصناعة الطباعة والتنضيد. كان   هو النص الوهمي القياسي في هذه الصناعة منذ القرن الخامس عشر الميلادي ، عندما أخذت طابعة غير معروفة لوحًا من نوعه وتدافعت عليه لصنع كتاب نموذج للعينات. لقد نجا ليس فقط خمسة قرون ، ولكن أيضا قفزة في التنضيد الإلكتروني ، تبقى دون تغيير أساسي. لقد تم نشره في الستينيات من القرن الماضي من خلال إصدار أوراق  التي تحتوي على مقاطع   ، ومؤخراً مع برامج النشر المكتبي مثل   بما في ذلك إصدارات ."
 
     return (
         <View style={{flex:1}}>
@@ -99,7 +102,7 @@ export default class Item extends Component {
                                 <Icon name="star" style={{fontSize:20,color:"#fff700"}} />
                                 <Icon name="star" style={{fontSize:20,color:"#fff700"}} />
                                 <Icon name="star" style={{fontSize:20,color:"#fff700"}} />
-                                <Text style={{color:this.state.text}}> (1) Reviews</Text>
+                                <Text style={{color:this.state.text,marginLeft:5}}> (1) {this.state.Lang == "en" ? "Reviews" : "التعليقات"}</Text>
                             </View>
                         </View>
                         <View>
@@ -108,32 +111,47 @@ export default class Item extends Component {
                                 activeTextStyle={{color: this.state.text, fontWeight: 'bold'}}
                                 heading={
                                 <TabHeading style={{backgroundColor: this.state.background}} >
-                                <Text style={{color:this.state.text}}>Description</Text>
+                                <Text style={{color:this.state.text}}>{this.state.Lang == "en" ? "Description" : "وصف"}</Text>
                                 </TabHeading>
                                 }>
                                 <ScrollView style={{backgroundColor: this.state.background,}}>
                                     <View style={{width:'100%',alignItems: 'center',}}>
                                         <View style={{width:"80%",marginTop:20,marginBottom:20}}>
-                                            <View style={{flexDirection:"row",alignItems: 'center',}}>
+                                            {this.state.Lang =="en" ? <View style={{flexDirection:"row",alignItems: 'center',}}>
                                                 <Icon name="circle" type="FontAwesome" style={{fontSize:7,color:this.state.text}} />
                                                 <Text style={{marginLeft:10,color:this.state.text}}>Woven Cotton</Text>
-                                            </View>
-                                            <View style={{flexDirection:"row",alignItems: 'center',}}>
+                                            </View> : <View style={{flexDirection:"row",alignItems: 'center',justifyContent:"flex-end"}}>
+                                                <Text style={{marginRight:10,color:this.state.text}}>القطن المنسوج</Text>
+                                                <Icon name="circle" type="FontAwesome" style={{fontSize:7,color:this.state.text}} />
+                                            </View>}
+                                            {this.state.Lang =="en" ? <View style={{flexDirection:"row",alignItems: 'center',}}>
                                                 <Icon name="circle" type="FontAwesome" style={{fontSize:7,color:this.state.text}} />
                                                 <Text style={{marginLeft:10,color:this.state.text}}>Seude Leather</Text>
-                                            </View>
-                                            <View style={{flexDirection:"row",alignItems: 'center',}}>
+                                            </View> : <View style={{flexDirection:"row",alignItems: 'center',justifyContent:"flex-end"}}>
+                                                <Text style={{marginRight:10,color:this.state.text}}>جلد سويدي</Text>
+                                                <Icon name="circle" type="FontAwesome" style={{fontSize:7,color:this.state.text}} />
+                                            </View>}
+                                            {this.state.Lang =="en" ? <View style={{flexDirection:"row",alignItems: 'center',}}>
                                                 <Icon name="circle" type="FontAwesome" style={{fontSize:7,color:this.state.text}} />
                                                 <Text style={{marginLeft:10,color:this.state.text}}>Magnetic Press</Text>
-                                            </View>
-                                            <View style={{flexDirection:"row",alignItems: 'center',}}>
+                                            </View> : <View style={{flexDirection:"row",alignItems: 'center',justifyContent:"flex-end"}}>
+                                                <Text style={{marginRight:10,color:this.state.text}}>الصحافة المغناطيسية</Text>
+                                                <Icon name="circle" type="FontAwesome" style={{fontSize:7,color:this.state.text}} />
+                                            </View>}
+                                            {this.state.Lang =="en" ? <View style={{flexDirection:"row",alignItems: 'center',}}>
                                                 <Icon name="circle" type="FontAwesome" style={{fontSize:7,color:this.state.text}} />
                                                 <Text style={{marginLeft:10,color:this.state.text}}>Zipped Pocket</Text>
-                                            </View>
-                                            <View style={{flexDirection:"row",alignItems: 'center',}}>
+                                            </View> : <View style={{flexDirection:"row",alignItems: 'center',justifyContent:"flex-end"}}>
+                                                <Text style={{marginRight:10,color:this.state.text}}>مضغوط الجيب</Text>
+                                                <Icon name="circle" type="FontAwesome" style={{fontSize:7,color:this.state.text}} />
+                                            </View>}
+                                            {this.state.Lang =="en" ? <View style={{flexDirection:"row",alignItems: 'center',}}>
                                                 <Icon name="circle" type="FontAwesome" style={{fontSize:7,color:this.state.text}} />
                                                 <Text style={{marginLeft:10,color:this.state.text}}>Not Wash</Text>
-                                            </View>
+                                            </View> : <View style={{flexDirection:"row",alignItems: 'center',justifyContent:"flex-end"}}>
+                                                <Text style={{marginRight:10,color:this.state.text}}>لا يغسل</Text>
+                                                <Icon name="circle" type="FontAwesome" style={{fontSize:7,color:this.state.text}} />
+                                            </View>}
                                         </View>
                                     </View>
                                 </ScrollView>
@@ -141,14 +159,14 @@ export default class Item extends Component {
                             <Tab 
                                 heading={ 
                                 <TabHeading  style={{backgroundColor: this.state.background}}>
-                                <Text style={{color:this.state.text}}>Feature</Text>
+                                <Text style={{color:this.state.text}}>{this.state.Lang == "en" ? "Feature" : "خاصية"}</Text>
                                 </TabHeading>
                                 }>
                                 <ScrollView style={{backgroundColor: this.state.background,}}>
                                     <View style={{width:'100%',alignItems: 'center',}}>
                                     <View style={{width:"90%",marginTop:20,marginBottom:20}}>
                                         <Text style={{color:this.state.text}}>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                       {this.state.Lang == "en" ? Lorem :  Lorem_Arabic}
                                         </Text>
                                     </View>
                                     </View>
@@ -157,11 +175,11 @@ export default class Item extends Component {
                             <Tab
                                 heading={ 
                                 <TabHeading  style={{backgroundColor: this.state.background}}>
-                                <Text style={{color:this.state.text}}>Reviews</Text>
+                                <Text style={{color:this.state.text}}>{this.state.Lang == "en" ? "Reviews" : "استعراض"}</Text>
                                 </TabHeading>
                                 }>
                                 <ScrollView style={{backgroundColor: this.state.background,}}>
-                                    <View style={{width:'100%',alignItems: 'center',borderBottomWidth:0.7,borderColor:"grey",paddingBottom: 10,}}>
+                                   {this.state.Lang == "en" ? <View style={{width:'100%',alignItems: 'center',borderBottomWidth:0.7,borderColor:"grey",paddingBottom: 10,}}>
                                     <View style={{width:"90%",marginTop:20,marginBottom:20}}>
                                         <View>
                                         <Text style={{fontSize:17,color:this.state.text,fontWeight:"bold"}}>Sophia Kennedy</Text>
@@ -180,7 +198,27 @@ export default class Item extends Component {
                                         </View>
                                         </View>
                                     </View>
+                                    </View> : 
+                                <View style={{width:'100%',alignItems: 'center',borderBottomWidth:0.7,borderColor:"grey",paddingBottom: 10,}}>
+                                <View style={{width:"90%",marginTop:20,marginBottom:20}}>
+                                  <View>
+                                    <Text style={{fontSize:17,color:"black",fontWeight:"bold"}}>صوفيا كينيدي</Text>
+                                    <Text style={{fontSize:13,color:"black",marginTop:10}}>تصميم مذهل</Text>
+                                    <View style={{width:"100%",flexDirection:"row"}}>
+                                      <View style={{width:"50%",alignItems:"flex-start"}}>
+                                      <Text style={{fontSize:13,color:"black",marginTop:10}}>{new Date().getUTCDate() + "-" + new Date().getMonth() + "-" + new Date().getFullYear() }</Text>
+                                      </View>
+                                      <View style={{width:"50%",justifyContent:"flex-end",flexDirection:"row",alignItems: 'center',}}>
+                                        <Icon name="star" style={{fontSize:15,color:"#fff700"}} />
+                                        <Icon name="star" style={{fontSize:15,color:"#fff700"}} />    
+                                        <Icon name="star" style={{fontSize:15,color:"#fff700"}} />
+                                        <Icon name="star" style={{fontSize:15,color:"#fff700"}} />
+                                        <Icon name="star" style={{fontSize:15,color:"#fff700"}} />
+                                      </View>
                                     </View>
+                                  </View>
+                                </View>
+                              </View>}
                                 </ScrollView>
                             </Tab>
                             </Tabs>
@@ -214,7 +252,7 @@ export default class Item extends Component {
                         </View>
                     </View>
                     <TouchableOpacity activeOpacity={0.7} style={{width:"50%",backgroundColor:"green",height:40,justifyContent: 'center',alignItems: 'center',}}>
-                        <Text style={{color:"white",fontWeight:"bold"}}>BUY NOW</Text>
+                        <Text style={{color:"white",fontWeight:"bold"}}>{this.state.Lang == "en" ? "BUY NOW" : "اشتري الآن"}</Text>
                     </TouchableOpacity>
                 </View>
                 {/* Buy now Tab ends */}

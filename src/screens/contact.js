@@ -69,8 +69,7 @@ export default class Contact extends Component {
             </View>
             <View style={{alignItems:"center",marginTop: 40,margin: 50,marginLeft: 60,}}>
                 <Icon name="pin" style={{fontSize:40,color:this.state.text}} />
-                <Text style={{color:this.state.text,}}>403 Dubai Building,
-                Damascus st,Al Qusaus 4 P.O.Box 35538, Dubai United Arab Emirates</Text>
+                <Text style={{color:this.state.text,}}>{this.state.Lang == "en" ? "403 Dubai Building,Damascus st,Al Qusaus 4 P.O.Box 35538, Dubai United Arab Emirates" : "403 مبنى دبي ، شارع دمشق ، القصيص 4 ص ب 35538 ​​، دبي ، الإمارات العربية المتحدة"}</Text>
             </View>
         </View>
       </ScrollView>

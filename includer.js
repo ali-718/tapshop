@@ -32,17 +32,24 @@ export default class Includer extends Component {
         text:this.props.navigation.getParam('text','black'),
         background:this.props.navigation.getParam('back','white'),
         statusBarColour:this.props.navigation.getParam('status','green'),
-        grey:this.props.navigation.getParam('grey',"#686868")
+        grey:this.props.navigation.getParam('grey',"#686868"),
+        Lang:this.props.navigation.getParam('Lang',"en")
     }
 
   render() {
     
         const Drawer = createDrawerNavigator({
             Splash:{
-                screen:SplashScreen
+                screen:SplashScreen,
+                navigationOptions:{
+                    drawerLockMode:"locked-closed"
+                }
             },
             Home:{
                 screen: props => <Home state={this.state} navigation={props} />,
+                navigationOptions:{
+                    drawerLabel:this.state.Lang == "en" ? "Home" : "الصفحة الرئيسية"
+                }
             },
             Display:{
                 screen:props => <Display state={this.state} navigation={props} />,
@@ -77,11 +84,14 @@ export default class Includer extends Component {
             AddProduct:{
                 screen:props => <AddProduct state={this.state} navigation={props} />,
                 navigationOptions:{
-                    drawerLabel:"Sell an Item"
+                    drawerLabel:this.state.Lang == "en" ? "Sell an Item" : "بيع غرض"
                 }
             },
             Login:{
-                screen:props => <Login state={this.state} navigation={props} />
+                screen:props => <Login state={this.state} navigation={props} />,
+                navigationOptions:{
+                    drawerLabel:this.state.Lang == "en" ? "Login" : "تسجيل الدخول"
+                }
             },
             Forgot:{
                 screen:props => <Forgot state={this.state} navigation={props} />,
@@ -104,7 +114,7 @@ export default class Includer extends Component {
             CreditCard:{
                 screen:(props) => <RNCreditCard state={this.state} {...props} />,
                 navigationOptions:{
-                    drawerLabel:"credit"
+                    drawerLabel:() => null
                 }
             },
             Contact:{
@@ -114,10 +124,16 @@ export default class Includer extends Component {
                 }
             },
             Account:{
-                screen:props => <Account state={this.state} navigation={props} />
+                screen:props => <Account state={this.state} navigation={props} />,
+                navigationOptions:{
+                    drawerLabel:this.state.Lang == "en" ? "Account" : "الحساب"
+                }             
             },
             Includer:{
-                screen:Includer
+                screen:Includer,
+                navigationOptions:{
+                    drawerLockMode:"locked-closed"
+                }
             }
         },
         {
@@ -128,7 +144,8 @@ export default class Includer extends Component {
             activeBackgroundColor:"rgba(0,0,0,0)",
             inactiveBackgroundColor:"rgba(0,0,0,0)",
         },
-        initialRouteName:"Home"
+        drawerPosition:this.state.Lang == "en" ? "left" : "right",
+        initialRouteName:"Splash"
           },)
 
         const AppContainer = createAppContainer(Drawer)
