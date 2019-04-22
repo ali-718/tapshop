@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text,ScrollView, TouchableOpacity,Image } from 'react-native';
+import { View, Text,ScrollView, TouchableOpacity,Image,BackHandler } from 'react-native';
 import {Header, Title,Button, Left,Body, Icon,Item, Input, Label,Right} from 'native-base'
 import ImagePicker from 'react-native-image-crop-picker';
 import { Chip,HelperText } from 'react-native-paper';
 
 export default class AddProduct extends Component {
+
+    
+    _didFocusSubscription;
+    _willBlurSubscription;
 
     constructor(props){
         super(props);
@@ -16,7 +20,27 @@ export default class AddProduct extends Component {
           status:props.state.statusBarColour,
           Lang:props.state.Lang,
         }
+        this._didFocusSubscription = props.navigation.navigation.addListener('didFocus', payload =>
+        BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
+      );
       }
+
+      componentDidMount() {
+        this._willBlurSubscription = this.props.navigation.navigation.addListener('willBlur', payload =>
+          BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
+        );
+      }
+    
+      onBackButtonPressAndroid = () => {
+        this.props.navigation.navigation.navigate('Home')
+        return true
+        }
+    
+      componentWillUnmount() {
+        this._didFocusSubscription && this._didFocusSubscription.remove();
+        this._willBlurSubscription && this._willBlurSubscription.remove();
+      }
+
     static navigationOptions =  {
         drawerLabel : "Sell an Item",
     }

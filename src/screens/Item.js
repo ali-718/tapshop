@@ -251,7 +251,7 @@ export default class Item extends Component {
                             <Icon name="cart" style={{fontSize:20,color:this.state.text}}/>
                         </View>
                     </View>
-                    <TouchableOpacity activeOpacity={0.7} style={{width:"50%",backgroundColor:"green",height:40,justifyContent: 'center',alignItems: 'center',}}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigation.navigate("CreditCard")} activeOpacity={0.7} style={{width:"50%",backgroundColor:"green",height:40,justifyContent: 'center',alignItems: 'center',}}>
                         <Text style={{color:"white",fontWeight:"bold"}}>{this.state.Lang == "en" ? "BUY NOW" : "اشتري الآن"}</Text>
                     </TouchableOpacity>
                 </View>
