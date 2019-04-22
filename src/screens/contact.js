@@ -15,7 +15,8 @@ export default class Contact extends Component {
           text:props.state.text,
           back:props.state.backgroundColor,
           status:props.state.statusBarColour,
-          navigation:props.navigation
+          navigation:props.navigation,
+          Lang:props.state.Lang
         }
         this._didFocusSubscription = props.navigation.navigation.addListener('didFocus', payload =>
         BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
